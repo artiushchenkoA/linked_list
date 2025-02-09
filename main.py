@@ -10,5 +10,9 @@ my_list.push_front(15)
 
 my_list.display()
 
-print(my_list.value_at(10))
+my_list.insert(1, 48)
+my_list.display()
+
+my_list.remove(3)
+my_list.display()
 

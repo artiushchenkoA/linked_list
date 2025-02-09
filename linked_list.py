@@ -50,8 +50,43 @@ class LinkedList(object):
     def value_at(self, index) -> Any:
         current_node = self.head
         count = 0
-        while current_node <= None:
+        while current_node != None:
             if count == index:
                 return current_node.get_data()
             count += 1
-        current_node = current_node.get_next()
+            current_node = current_node.get_next()
+
+    def insert(self, index, data) -> None:
+        new_node = Node(data)
+        current_node = self.head
+        count = 0
+
+        while current_node.get_next() != None:
+            if index == 0:
+                self.push_front(data)
+                return
+            elif count + 1 == index:
+                node_after = current_node.get_next()
+                current_node.set_next(new_node)
+                new_node.set_next(node_after)
+                return
+            count += 1
+            current_node = current_node.get_next()
+        raise Exception('Bad index')
+    
+    def remove(self, index) -> None:
+        current_node = self.head
+        count = 0
+
+        while current_node.get_next() != None:
+            if index == 0:
+                self.remove_front()
+                return
+            elif count + 1 == index:
+                node_to_rem = current_node.get_next()
+                node_after = node_to_rem.get_next()
+                current_node.set_next(node_after)
+                return
+            count += 1
+            current_node = current_node.get_next()
+        raise Exception('Bad index')
