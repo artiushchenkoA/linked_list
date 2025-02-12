@@ -16,6 +16,36 @@ def small_list():
         count += 1
     return ll
 
+@pytest.fixture
+def odd_list():
+    """Returns a LinkedList with an odd number of elements."""
+    ll = LinkedList()
+    ll.append(1)
+    ll.append(2)
+    ll.append(3)
+    ll.append(4)
+    ll.append(5)
+    return ll
+
+@pytest.fixture
+def even_list():
+    """Returns a LinkedList with an even number of elements."""
+    ll = LinkedList()
+    ll.append(1)
+    ll.append(2)
+    ll.append(3)
+    ll.append(4)
+    ll.append(5)
+    ll.append(6)
+    return ll
+
+@pytest.fixture
+def single_element_list():
+    """Returns a LinkedList with a single element."""
+    ll = LinkedList()
+    ll.append(42)
+    return ll
+
 def test_append(small_list):
     small_list.append(4)
     assert small_list.length() == 21
@@ -95,6 +125,20 @@ def test_reverse_single_element():
     ll.append(1)
     ll.reverse()
     assert ll.value_at(0) == 1
+
+def test_find_middle_odd(odd_list):
+    assert odd_list.find_middle() == 3 
+
+def test_find_middle_even(even_list):
+    assert even_list.find_middle() == 4
+
+def test_find_middle_single(single_element_list):
+    assert single_element_list.find_middle() == 42
+
+def test_find_middle_empty(empty_list):
+    with pytest.raises(ValueError, match="Empty list"):
+        empty_list.find_middle()
+
 
 if __name__ == "__main__":
     pytest.main()

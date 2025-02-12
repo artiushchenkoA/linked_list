@@ -143,3 +143,17 @@ class LinkedList(object):
             previous_node = current_node
             current_node = next_node
         self.head = previous_node
+
+    def find_middle(self) -> int:
+        # Handle exceptions
+        if not self.head:
+            raise ValueError('Empty list')
+        
+        slow = self.head
+        fast = self.head
+
+        while fast and fast.get_next():
+            slow = slow.get_next()
+            fast = fast.get_next().get_next()
+        
+        return slow.get_data()
