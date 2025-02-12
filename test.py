@@ -46,6 +46,29 @@ def single_element_list():
     ll.append(42)
     return ll
 
+@pytest.fixture
+def polindrome_list_odd():
+    ll = LinkedList()
+    ll.append(2)
+    ll.append(18)
+    ll.append(4)
+    ll.append(15)
+    ll.append(4)
+    ll.append(18)
+    ll.append(2)
+    return ll
+
+@pytest.fixture
+def polindrome_list_even():
+    ll = LinkedList()
+    ll.append(20)
+    ll.append(4)
+    ll.append(17)
+    ll.append(17)
+    ll.append(4)
+    ll.append(20)
+    return ll
+
 def test_append(small_list):
     small_list.append(4)
     assert small_list.length() == 21
@@ -138,6 +161,19 @@ def test_find_middle_single(single_element_list):
 def test_find_middle_empty(empty_list):
     with pytest.raises(ValueError, match="Empty list"):
         empty_list.find_middle()
+
+def test_is_palindrome_odd(polindrome_list_odd):
+    assert polindrome_list_odd.is_palindrome() == True
+
+def test_is_palindrome_even(polindrome_list_even):
+    assert polindrome_list_even.is_palindrome() == True
+
+def test_is_palindrome_single(single_element_list):
+    assert single_element_list.is_palindrome() == True
+
+def test_is_palindrome_empty(empty_list):
+    with pytest.raises(ValueError, match="Empty list"):
+        empty_list.is_palindrome()
 
 
 if __name__ == "__main__":

@@ -157,3 +157,23 @@ class LinkedList(object):
             fast = fast.get_next().get_next()
         
         return slow.get_data()
+    
+    def is_palindrome(self) -> bool:
+        # Handle exceptions
+        if not self.head:
+            raise ValueError('Empty list')
+        
+        current_node = self.head
+        output_array =[]
+
+        while current_node is not None:
+            output_array.append(current_node.get_data())
+            current_node = current_node.get_next()
+        
+        current_node = self.head
+        while current_node is not None:
+            char = output_array.pop()
+            if current_node.get_data() != char:
+                return False
+            current_node = current_node.get_next()
+        return True
