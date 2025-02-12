@@ -90,3 +90,15 @@ class LinkedList(object):
             count += 1
             current_node = current_node.get_next()
         raise Exception('Bad index')
+    
+    def reverse(self) -> None:
+        previous_node = None
+        current_node = self.head
+        next_node = None
+
+        while current_node != None:
+            next_node = current_node.get_next()
+            current_node.set_next(previous_node)
+            previous_node = current_node
+            current_node = next_node
+        self.head = previous_node
