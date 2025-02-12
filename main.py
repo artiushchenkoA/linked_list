@@ -1,12 +1,10 @@
 from linked_list import LinkedList
 
-my_list = LinkedList()
+ll = LinkedList()
+count = 0
+while count < 20:
+    ll.append(count)
+    count += 1
 
-my_list.append(5)
-my_list.append(4)
-my_list.append(6)
-my_list.append(10)
-my_list.reverse()
-
-my_list.display()
-
+ll.display()
+print(ll.length())
